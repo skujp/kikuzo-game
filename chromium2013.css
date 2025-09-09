@@ -334,10 +334,17 @@ html[subframe] div {
   }
 }
 
-.drawer__menu {
-  display: none;
+.global-navi a:link {
+  color: #000000;
 }
 
-.global-navi a:link {
-  color: black;
+.drawer__menu {
+   display: none;
 }
+
+#global-nav-drawer:checked ~ .drawer__menu {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    display: block;
+}
+
