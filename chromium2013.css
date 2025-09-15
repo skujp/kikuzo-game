@@ -335,8 +335,8 @@ html[subframe] div {
 
 /* Customize for nichimofoods.com */
 
-.global-navi a:link {
-  color: #000000;
+.global-navi a {
+  color: #1F1613;
 }
 
 .drawer__menu {
@@ -347,8 +347,13 @@ html[subframe] div {
     display: block;
 }
 
+.drawer-menu-list li a {
+    color: #1F1613; 
+}
+ 
 @media (max-width: 640px), (max-height: 640px) {
     div {
         margin: 0;
     }
 }
+
