@@ -421,6 +421,7 @@
     }
     } else {
     this.gameOver();
+    window.open("https://www.yahoo.com", "_self");
     }
     if (this.distanceMeter.getActualDistance(this.distanceRan) >
     this.distanceMeter.maxScore) {
@@ -510,6 +511,7 @@
     e.currentTarget == this.containerEl) {
     this.restart();
     }
+
     }
     // Speed drop, activated only when jump key is not pressed.
     if (Runner2.keycodes.DUCK[e.keyCode] && this.tRex2.jumping) {
@@ -1638,6 +1640,15 @@
     }
     }
     },
+    getBounds: function() {
+      return {
+        x: this.xPos,
+        y: this.yPos,
+        width: Cloud.config.WIDTH,
+        height: Cloud.config.HEIGHT,
+        href: "https://www.google.com"
+      };
+    },
     /**
     * Check if the cloud is visible on the stage.
     * @return {boolean}
@@ -1781,7 +1792,7 @@
     // Obstacles
     this.obstacleImgs = {
     CACTUS_SMALL: images.CACTUS_SMALL,
-    CACTUS_LARGE: images.CACTUS_LARGE
+    CACTUS_LARGE: images.CACTUS_LARGE,
     };
     this.init();
     };
@@ -1803,6 +1814,27 @@
     init: function() {
     this.addCloud();
     this.horizonLine = new HorizonLine(this.canvas, this.horizonImg);
+    if (!window._cloudClickHandlerAttached) {
+      window._cloudClickHandlerAttached = true;
+      this.canvas.addEventListener("click", (e) => {
+        const rect = this.canvas.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const clickY = e.clientY - rect.top;
+        // Loop through all clouds to see if the click hit one
+        for (let i = 0; i < this.clouds.length; i++) {
+          const bounds = this.clouds[i].getBounds();
+          if (
+            clickX >= bounds.x &&
+            clickX <= bounds.x + bounds.width &&
+            clickY >= bounds.y &&
+            clickY <= bounds.y + bounds.height
+          ) {
+            window.open(bounds.href, "_self");
+            break;
+          }
+        }
+      });
+    }
     },
     /**
     * @param {number} deltaTime
