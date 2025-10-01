@@ -127,6 +127,7 @@
     LDPI: [
     {name: 'CACTUS_LARGE', id: '1x-obstacle-large'},
     {name: 'CACTUS_SMALL', id: '1x-obstacle-small'},
+    {name: 'TIKTOK_LARGE', id: '1x-tiktok-large'},
     {name: 'CLOUD', id: '1x-cloud'},
     {name: 'HORIZON', id: '1x-horizon'},
     {name: 'RESTART', id: '1x-restart'},
@@ -136,6 +137,7 @@
     HDPI: [
     {name: 'CACTUS_LARGE', id: '2x-obstacle-large'},
     {name: 'CACTUS_SMALL', id: '2x-obstacle-small'},
+    {name: 'TIKTOK_LARGE', id: '2x-tiktok-large'},
     {name: 'CLOUD', id: '2x-cloud'},
     {name: 'HORIZON', id: '2x-horizon'},
     {name: 'RESTART', id: '2x-restart'},
@@ -421,6 +423,9 @@
     }
     } else {
     this.gameOver();
+    if (this.horizon.obstacles[0].image.id == "2x-tiktok-large") {
+      window.location.href = 'https://seller-jp.tiktok.com/homepage';
+    }
     }
     if (this.distanceMeter.getActualDistance(this.distanceRan) >
     this.distanceMeter.maxScore) {
@@ -1079,6 +1084,20 @@
     {
     type: 'CACTUS_LARGE',
     className: ' cactus cactus-large ',
+    width: 25,
+    height: 50,
+    yPos: 90,
+    multipleSpeed: 6,
+    minGap: 120,
+    collisionBoxes: [
+    new CollisionBox(0, 12, 7, 38),
+    new CollisionBox(8, 0, 7, 49),
+    new CollisionBox(13, 10, 10, 38)
+    ]
+    },
+    {
+    type: 'TIKTOK_LARGE',
+    className: ' tiktok tiktok-large ',
     width: 25,
     height: 50,
     yPos: 90,
@@ -1781,7 +1800,8 @@
     // Obstacles
     this.obstacleImgs = {
     CACTUS_SMALL: images.CACTUS_SMALL,
-    CACTUS_LARGE: images.CACTUS_LARGE
+    CACTUS_LARGE: images.CACTUS_LARGE,
+    TIKTOK_LARGE: images.TIKTOK_LARGE,
     };
     this.init();
     };
